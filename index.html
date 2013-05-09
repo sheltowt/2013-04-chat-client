@@ -7,12 +7,24 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="vendor/jquery/jquery-1.9.1.js"></script>
     <script src="js/setup.js"></script>
+    <script src="js/REST.js"></script>
   </head>
   <body>
 
     <div id="main">
       <h1>Chat with JSON!</h1>
     </div>
+    <div id="input">
+      <input type ="text" id="message"><button id ="submitButton">tweet</button>
+    </div>
 
+    <script>
+    $(document).ready(function(){
+      $('#submitButton').on('click', function(){
+        var message = $('#message').val();
+        create(message,1, console.log("I hax your shit"));
+      })
+    })
+    </script>
   </body>
 </html>
