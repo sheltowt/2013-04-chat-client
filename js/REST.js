@@ -1,4 +1,5 @@
 window.previousMessageCount = null;
+window.friends = [];
 
 var index = function(){
   $.ajax('https://api.parse.com/1/classes/messages', {
@@ -76,20 +77,25 @@ var destroy = function(){
 
 };
 
-var addMessageToDOM = function(content){
+var addMessageToDOM = function(content, username){
 
-  var userAndContent = window.username + ": " + content;
-  var newMessage = $('<li></li>').text(userAndContent).addClass(window.username);
+  var userAndContent = username + ": " + content;
+  var newMessage = $('<li></li>').text(userAndContent).addClass(username);
+  
   newMessage.on('click', function(){
-    var domClass = '.' + window.username;
-    $("." + window.username).css("font-weight","bold");
+    var domClass = '.' + username;
+    addFriend(username);
+    $("." + username).css("font-weight","bold");
   });
   window.$listOfTweets.prepend(newMessage);
+  if(isFriend(username)){
+    $("." + username).css("font-weight","bold");
+  }
 };
 
 var displayNewMessages = function(data){
     for(var i = 0; i < data.results.length - previousMessageCount; i++){
-    addMessageToDOM(data.results[0].content);
+    addMessageToDOM(data.results[0].content, data.results[0].username);
    }
     previousMessageCount = data.results.length;
 };
@@ -109,6 +115,20 @@ var displayNewMessages = function(data){
 //   });
 // };
 
+//Check to see if this user belongs to the list of the current user's friends
+var isFriend = function(username){
+  for(var i = 0; i < friends.length; i++){
+    if(friends[i] === username){
+      return true;
+    }
+  }
+};
+
+//Adds friend the user clicked on to a list of the user's friends
+var addFriend = function(username){
+  window.friends.push(username);
+
+};
 
 
 
