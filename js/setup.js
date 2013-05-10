@@ -8,6 +8,7 @@ if(!/(&|\?)username=/.test(window.location.search)){
 }
 
 window.username = window.location.search.split('=')[1];
+debugger;
 
 // Don't worry about this code, it will ensure that your ajax calls are allowed by the browser
 $.ajaxPrefilter(function(settings, _, jqXHR) {
@@ -18,7 +19,7 @@ $.ajaxPrefilter(function(settings, _, jqXHR) {
 $.ajax('https://api.parse.com/1/classes/bloohblahs', {
   contentType: 'application/json',
   success: function(data){
-    //showOldMessages(data);
+    showOldMessages(data);
     console.log("retrieval sucessful");
   },
   error: function(data) {
@@ -28,18 +29,14 @@ $.ajax('https://api.parse.com/1/classes/bloohblahs', {
 
 
 var showOldMessages= function(data){
-    window.$listOfTweets = $('<ul></ul>');
     var message;
-    console.log(data.results[0]);
-    for(var i = 0; i < data.results.length; i++){
-      //debugger;
-      if(data.results[i].username){
-         message = data.results[i].text;
-      }
-       message = data.results[i].text;
-      var message2 = $('<li></li>').text(message);
-      $(window.$listOfTweets).append(message2);
-    }
-    $('body').append(window.$listOfTweets);
+    // for(var i = 0; i < data.results.length; i++){
+    //   //debugger;
+    //   if(data.results[i].username){
+    //      message = data.results[i].text;
+    //   }
+    //    message = data.results[i].text;
+    //   var message2 = $('<li></li>').text(message);
+    //   $(window.$listOfTweets).append(message2);
   };
 

@@ -20,6 +20,8 @@
 
     <script>
     $(document).ready(function(){
+      window.$listOfTweets = $('<ul></ul>');
+      $('body').append(window.$listOfTweets);
       //addFriend2User('ericrius');
       $('#submitButton').on('click', function(){
         var message = $('#message').val();
@@ -27,7 +29,7 @@
       });
        setInterval(function(){
           window.show();
-       }, 200);
+       }, 3000);
     });
     </script>
   </body>
