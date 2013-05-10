@@ -1,3 +1,5 @@
+window.previousMessageCount = null;
+
 var index = function(){
   $.ajax('https://api.parse.com/1/classes/messages', {
   contentType: 'application/json',
@@ -17,8 +19,8 @@ var show = function(){
   contentType: 'application/json',
   data: {order: "-createdAt"},
   success: function(data){
-      console.log(data);
-      displayNewMessages(data);
+    previousMessageCount = previousMessageCount || data.results.length;
+    displayNewMessages(data);
   },
   error: function(data) {
     console.log('Ajax request failed');
@@ -52,7 +54,7 @@ var create = function(content, roomname, hax){
     type: 'POST',
     data: JSON.stringify(message),
     success: function(data){
-      addMessageToDOM(content);
+      //addMessageToDOM(content);
     },
     error: function(error) {
       console.log(error);
@@ -82,11 +84,14 @@ var addMessageToDOM = function(content){
     var domClass = '.' + window.username;
     $("." + window.username).css("font-weight","bold");
   });
-  window.$listOfTweets.append(newMessage);
+  window.$listOfTweets.prepend(newMessage);
 };
 
 var displayNewMessages = function(data){
+    for(var i = 0; i < data.results.length - previousMessageCount; i++){
     addMessageToDOM(data.results[0].content);
+   }
+    previousMessageCount = data.results.length;
 };
 
 // var addFriend2User = function(friend){
