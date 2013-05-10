@@ -20,11 +20,16 @@
 
     <script>
     $(document).ready(function(){
+      //addFriend2User('ericrius');
       $('#submitButton').on('click', function(){
         var message = $('#message').val();
         create(message,1, console.log("I hax your shit"));
-      })
-    })
+      });
+       setInterval(function(){
+          console.log("shnur");
+          window.show();
+       }, 6000);
+    });
     </script>
   </body>
 </html>

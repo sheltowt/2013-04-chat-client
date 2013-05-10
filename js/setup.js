@@ -5,8 +5,6 @@ if(!/(&|\?)username=/.test(window.location.search)){
   }
   newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
   window.location.search = newSearch;
-  
-  debugger;
 }
 
 window.username = window.location.search.split('=')[1];
@@ -17,10 +15,11 @@ $.ajaxPrefilter(function(settings, _, jqXHR) {
   jqXHR.setRequestHeader("X-Parse-REST-API-Key", "QC2F43aSAghM97XidJw8Qiy1NXlpL5LR45rhAVAf");
 });
 
-$.ajax('https://api.parse.com/1/classes/messages', {
+$.ajax('https://api.parse.com/1/classes/bloohblahs', {
   contentType: 'application/json',
   success: function(data){
     showOldMessages(data);
+    console.log("retrieval sucessful");
   },
   error: function(data) {
     console.log('Ajax request failed');

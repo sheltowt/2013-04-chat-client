@@ -13,6 +13,18 @@ var index = function(){
 
 var show = function(){
 
+  $.ajax('https://api.parse.com/1/classes/blooblahs', {
+  contentType: 'application/json',
+  data: {order: "-createdAt"},
+  success: function(data){
+      console.log(data);
+      displayNewMessages(data);
+  },
+  error: function(data) {
+    console.log('Ajax request failed');
+  }
+});
+
 };
 
 var newMessage = function(){
@@ -35,7 +47,7 @@ var create = function(content, roomname, hax){
     'roomname': roomname
     // 'hax': hax
   };
-  $.ajax('https://api.parse.com/1/classes/blooblah', {
+  $.ajax('https://api.parse.com/1/classes/blooblahs', {
     contentType: 'application/json',
     type: 'POST',
     data: JSON.stringify(message),
@@ -55,6 +67,7 @@ var edit = function(){
 
 var update = function(){
 
+
 };
 
 var destroy = function(){
@@ -67,11 +80,30 @@ var addMessageToDOM = function(content){
   var newMessage = $('<li></li>').text(userAndContent).addClass(window.username);
   newMessage.on('click', function(){
     var domClass = '.' + window.username;
-    debugger;
     $("." + window.username).css("font-weight","bold");
   });
-  window.$listOfTweets.prepend(newMessage);
+  window.$listOfTweets.append(newMessage);
 };
+
+var displayNewMessages = function(data){
+    addMessageToDOM(data.results[0].content);
+};
+
+// var addFriend2User = function(friend){
+//   $.ajax('https://api.parse.com/1/users/friends', {
+//     contentType: 'application/json',
+//     type: 'POST',
+//     data: JSON.stringify(friend),
+//     success: function(data){
+//       console.log(data);
+//     },
+//     error: function(error) {
+//       console.log(error);
+//       console.log('Ajax request failed');
+//     }
+//   });
+// };
+
 
 
 
