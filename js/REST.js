@@ -100,6 +100,8 @@ var displayNewMessages = function(data){
     previousMessageCount = data.results.length;
 };
 
+//TEST
+
 // var addFriend2User = function(friend){
 //   $.ajax('https://api.parse.com/1/users/friends', {
 //     contentType: 'application/json',

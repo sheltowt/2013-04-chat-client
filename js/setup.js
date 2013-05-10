@@ -18,7 +18,7 @@ $.ajaxPrefilter(function(settings, _, jqXHR) {
 $.ajax('https://api.parse.com/1/classes/bloohblahs', {
   contentType: 'application/json',
   success: function(data){
-    showOldMessages(data);
+    //showOldMessages(data);
     console.log("retrieval sucessful");
   },
   error: function(data) {
