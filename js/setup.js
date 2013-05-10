@@ -8,7 +8,6 @@ if(!/(&|\?)username=/.test(window.location.search)){
 }
 
 window.username = window.location.search.split('=')[1];
-debugger;
 
 // Don't worry about this code, it will ensure that your ajax calls are allowed by the browser
 $.ajaxPrefilter(function(settings, _, jqXHR) {
